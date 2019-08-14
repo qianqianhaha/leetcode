@@ -1,6 +1,6 @@
-package test;
-
-
+package synctool;
+//手写自旋锁
+//使用AtomicReference 原子饮用 以及CAS算法
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SpinLockDemo {
@@ -8,12 +8,10 @@ public class SpinLockDemo {
 
     private void lock(){
         Thread thread = Thread.currentThread();
-        System.out.println(thread.getName()+" come in");
 
         while(!atomicReference.compareAndSet(null,thread)){
 
         }
-
     }
 
     private void unlock(){
@@ -27,11 +25,13 @@ public class SpinLockDemo {
         new Thread(()->{
             spinLockDemo.lock();
             try{
+                System.out.println(Thread.currentThread().getName()+" come in");
                 Thread.sleep(5000);
             }catch (Exception e){
                 e.printStackTrace();
             }
             spinLockDemo.unlock();
+            //spinLockDemo.unlock();
 
         },"AA").start();
 
@@ -45,6 +45,7 @@ public class SpinLockDemo {
         new Thread(()->{
             spinLockDemo.lock();
             try{
+                System.out.println(Thread.currentThread().getName()+" come in");
                 Thread.sleep(5000);
             }catch (Exception e){
                 e.printStackTrace();

@@ -1,4 +1,4 @@
-package test;
+package synctool;
 /**
  * juc 读写锁
  */

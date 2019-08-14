@@ -1,4 +1,4 @@
-package test;
+package synctool;
 
 public class Singleton {
     //单例模式实现

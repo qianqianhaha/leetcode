@@ -1,4 +1,4 @@
-package test;
+package synctool;
 /**
  * CountDownLatch 倒计时计数
  * 秦灭六国 一统天下
