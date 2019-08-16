@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 该变量的值将交替的在0，1之间变化
  *
  * 1. 线程 操作 资源类
- * 2. 判断 干活 通知
+ * 2. 循环判断 干活 通知
  * 3. 防止虚假唤醒:
  */
 public class ProdConsumer_TraditionDemo {
@@ -56,6 +56,9 @@ class ShareData{
             //获取操作资源类的互斥锁
             lock.lock();
 
+            //使用while循环 避免虚假唤醒
+            //在条件变量不满足的情况下，await()被唤醒之后返回没有及时进行条件检查
+            //导致了错误的唤醒
             while(number!=0){
                 condition.await();
             }
